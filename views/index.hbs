@@ -1,0 +1,76 @@
+<h1>Tablas de clientes</h1>
+
+<form class="" action="" method="">
+  <h3>datos de session</h3>
+  <div class="row">
+    <form class="col s12">
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input id="JSESSIONID" type="text" class="validate">
+          <label for="JSESSIONID">JSESSIONID</label>
+        </div>
+      </div>
+    </form>
+  </div>
+</form>
+<button class="waves-effect waves-light btn" id="Enviar" style="bottom: -20px" onclick="Buscar()">Enviar</button>
+
+<div id="loading" class="col s4 offset-s4">
+  <h5 style="margin-left: 46px; position:relative; bottom:130px;">Cargando</h5>
+</div>
+      <table>
+        <thead>
+          <tr>
+              <th>Fecha</th>
+              <th>Factura</th>
+              <th>Nombre</th>
+              <th>CUIT</th>
+              <th>Importe</th>
+              <th>AliCuota</th>
+              <th>Percepcion</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each datos}}
+            <tr>
+              <td>{{ this.Fecha }}</td>
+              <td>{{ this.Factura }}</td>
+              <td>{{ this.Nombre }}</td>
+              <td>{{ this.CUIT }}</td>
+              <td>${{ this.Importe }}</td>
+              <td>{{ this.AliCuota }}</td>
+              <td>${{ this.Percepcion }}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+      <script type="text/javascript">
+            function Buscar() {
+              var direccion = "/"
+              var sesionID = document.getElementById('JSESSIONID').value;
+              $.ajax(
+                {
+                  url: direccion,
+                  type: 'POST',
+                  data: { sesionID: sesionID },
+                  success: function(result){
+                    if(result) {
+                      if(result.error) {
+                        console.log(result.error);
+                      }else {
+                        console.log(result);
+                      }
+                    };
+                  },
+                  error: function(excepcion){
+                      alert('error');
+                      console.log(excepcion);
+                  }
+              });
+            };
+            function Cerrar() {
+              document.getElementById('errores').innerHTML = "";
+            };
+          </script>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{title}}</title>
+    <!-- Compiled and minified CSS -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    {{{body}}}
+    <script src="javascripts\jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script type="text/javascript">
+        var $loading = $('#loading').hide();
+        //Attach the event handler to any element
+        $(document).ajaxStart(function () {
+          //ajax request went so show the loading image
+          $loading.show();
+        }).ajaxStop(function () {
+          //got response so hide the loading image
+          $loading.hide();
+        });
+      </script>
+  </body>
+</html>
